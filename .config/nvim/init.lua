@@ -591,7 +591,6 @@ require('lazy').setup({
         pyright = {},
         rust_analyzer = {},
         solidity_ls_nomicfoundation = {},
-        typescript_language_server = {},
         -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -676,7 +675,15 @@ require('lazy').setup({
       }
     end,
   },
-
+  {
+    'baliestri/aura-theme',
+    lazy = false,
+    priority = 1000,
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. '/packages/neovim')
+      vim.cmd [[colorscheme aura-dark]]
+    end,
+  },
   { -- Autoformat
     'stevearc/conform.nvim',
     lazy = false,
