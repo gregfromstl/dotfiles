@@ -192,19 +192,6 @@ require('lazy').setup({
   'tpope/vim-fugitive', -- Git integration
   { 'glacambre/firenvim', build = ':call firenvim#install(0)' },
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000,
-    config = function()
-      require('catppuccin').setup()
-
-      -- setup must be called before loading
-      vim.o.termguicolors = true
-      vim.cmd 'colorscheme catppuccin'
-    end,
-  },
-
-  {
     'folke/trouble.nvim',
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = 'Trouble',
