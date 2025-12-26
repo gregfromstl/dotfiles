@@ -319,8 +319,18 @@ require('lazy').setup({
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
-          -- Hide exactly .git so .gitignore and .github are still shown
-          file_ignore_patterns = { 'node_modules', '^%.git/', '.cache', '.DS_Store', '^%.next/', '^%.nuxt/', '^%.vercel/', '^%.turbo/', 'pnpm-lock.yaml' },
+          file_ignore_patterns = {
+            'node_modules',
+            '^%.git/',
+            '^%dist/',
+            '.cache',
+            '.DS_Store',
+            '^%.next/',
+            '^%.nuxt/',
+            '^%.vercel/',
+            '^%.turbo/',
+            'pnpm-lock.yaml',
+          },
           mappings = {
             i = {
               ['<c-enter>'] = 'to_fuzzy_refine',
@@ -331,6 +341,7 @@ require('lazy').setup({
         pickers = {
           find_files = {
             hidden = true,
+            file_ignore_patterns = { 'node_modules', '.cache', '.DS_Store', 'dist', '.git' },
           },
         },
         extensions = {
