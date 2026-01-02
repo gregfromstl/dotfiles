@@ -44,6 +44,8 @@ alias tmk='tmux kill-sess -t' # Kill a tmux session
 alias tmls='tmux ls' # List all active tmux sessions
 alias tma='tmux -a -t' # Attach a tmux session
 alias wallet='~/.config/tmux/setup/wallet' # Wallet API pre-configured setup
+alias core='~/.config/tmux/setup/core' # Core API pre-configured setup
+alias mobile='~/.config/tmux/setup/mobile' # Mobile app pre-configured setup
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

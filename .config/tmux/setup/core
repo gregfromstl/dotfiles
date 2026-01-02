@@ -5,13 +5,13 @@
 # setw -g pane-base-index 1
 # set -g base-index 1
 
-SESSION="wallet-api"
+SESSION="core-api"
 SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
 
 if [ "$SESSIONEXISTS" = "" ]
   # Session already started, skip to attach
 then
-  cd ~/dev/wallet-api/
+  cd ~/dev/core-api/
   # Start new session
   tmux new-session -d -s $SESSION
 
