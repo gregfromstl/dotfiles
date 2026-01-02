@@ -33,11 +33,17 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/.p10k.zsh ]] || source ~/.config/.p10k.zsh
 
 ###########################
+#        Postgres         #
+###########################
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+###########################
 #          TMUX           #
 ###########################
 alias tmk='tmux kill-sess -t' # Kill a tmux session
 alias tmls='tmux ls' # List all active tmux sessions
 alias tma='tmux -a -t' # Attach a tmux session
+alias wallet='~/.config/tmux/setup/wallet' # Wallet API pre-configured setup
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

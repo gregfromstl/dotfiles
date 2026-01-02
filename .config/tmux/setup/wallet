@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# NOTE: Script assumes 1-indexed tmux panes and windows.
+# Add the following to your tmux.conf to enable this:
+# setw -g pane-base-index 1
+# set -g base-index 1
+
+SESSION="wallet-api"
+SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
+
+if [ "$SESSIONEXISTS" = "" ]
+  # Session already started, skip to attach
+then
+  cd ~/dev/wallet-api/
+  # Start new session
+  tmux new-session -d -s $SESSION
+
+  # Create main window: neovim, server, shell
+  tmux rename-window -t 1 'Main'
+  tmux send-keys -t 'Main' 'zsh' C-m 'nvim .' C-m
+  tmux split-window -h -t $SESSION:1
+  tmux send-keys -t 'Main' 'zsh' C-m
+  tmux send-keys -t 'Main' "
+    open -a Docker;
+    until docker info >/dev/null 2>&1; do sleep 1; done &&
+    pnpm docker:local &&
+    pnpm start:dev
+  " C-m
+  tmux split-window -v -t $SESSION:1
+  tmux send-keys -t 'Main' 'zsh' C-m 'clear' C-m
+
+  # Create lazygit window
+  tmux new-window -t $SESSION:2 -n 'Git'
+  tmux send-keys -t 'Git' 'lazygit' C-m
+
+  tmux select-pane -t $SESSION:1.1
+fi
+
+tmux attach-session -t $SESSION:1
+
+
